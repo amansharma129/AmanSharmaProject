@@ -87,5 +87,27 @@ namespace AmanSharmaProject
             GridView1.EditIndex = -1;
             binddata();
         }
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+            SearchData(searchTerm);
+        }
+        private void SearchData(string searchTerm)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM tblExpense WHERE receiver LIKE '%' + @receiver + '%'", con);
+            cmd.Parameters.AddWithValue("@receiver", searchTerm);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+
+            if (dt.Rows.Count != 0)
+            {
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            }
+
+        }
+
     }
 }
