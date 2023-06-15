@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="background.jpg" />
     <Content Include="StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
