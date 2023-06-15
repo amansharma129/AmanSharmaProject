@@ -51,9 +51,9 @@ namespace AmanSharmaProject
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString);
             int OrderID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
             con.Open();
-            SqlCommand cmd = new SqlCommand("DELETE FROM tblOrder WHERE OrderID = @OrderID", con);
+            SqlCommand cmd = new SqlCommand("DELETE FROM Orders WHERE OrderID = @OrderID", con);
             cmd.Parameters.AddWithValue("@OrderID", OrderID);
-            int i = cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
             con.Close();
             binddata();
         }
