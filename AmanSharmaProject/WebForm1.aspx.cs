@@ -49,10 +49,10 @@ namespace AmanSharmaProject
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString);
-            int OrderID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values["OrderID"].ToString());
+            int OrderID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
             con.Open();
-            SqlCommand cmd = new SqlCommand("delete from tblExpense where OrderID=@OrderID", con);
-            cmd.Parameters.AddWithValue("@id", OrderID);
+            SqlCommand cmd = new SqlCommand("DELETE FROM tblOrder WHERE OrderID = @OrderID", con);
+            cmd.Parameters.AddWithValue("@OrderID", OrderID);
             int i = cmd.ExecuteNonQuery();
             con.Close();
             binddata();
